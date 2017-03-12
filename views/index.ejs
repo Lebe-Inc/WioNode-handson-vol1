@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wio Node</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div></div>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script>
+      (function($){
+
+        var kuzuBg = [
+          "http://cdn2.natalie.mu/media/comic/1603/0317/extra/news_xlarge_kuzunohonkai_illust.jpg",
+          "http://www.kuzunohonkai.com/assets/img/top/message/message_illust.png",
+          "https://image-akiba-souken.ssl.k-img.com/assets/images/official/fe/fe25ba7b67ad316e459371e7cb6540cb.jpg",
+          "http://cdn2.natalie.mu/media/1612/1215/extra/news_header_hanabi.jpg",
+          "https://pbs.twimg.com/media/C2jMPE_UkAAXkNX.jpg",
+          "https://pbs.twimg.com/media/C2w0P4yVQAEKO9U.jpg",
+          "https://pbs.twimg.com/media/C2w0QcBUAAASmSZ.jpg",
+          "https://pbs.twimg.com/media/C4UPbD3VcAEqKfH.jpg"
+        ]
+
+        var yet = true;
+        var count = 0;
+        var bgCount = 0;
+
+        var DISTANCE = 50;
+        var MIN_COUNT = 5;
+
+        init();
+
+        function init(){
+          $("div").css("background-image","url("+kuzuBg[bgCount]+")");
+          var timerId = setTimeout(function(){
+            fetch(timerId);
+          },1000)
+        }
+
+        function fetch(id){
+
+          $.ajax({
+            url: "/api"
+          })
+          .done(function(data){
+            bgCount++;
+            if(bgCount == kuzuBg.length){
+              bgCount = 0;
+            }
+            if(~~data.cm < DISTANCE && yet){
+              count += 1
+              if(count > MIN_COUNT){
+                surprise();
+                clearTimeout(id);
+              }else{
+                init();
+              }
+            }else{
+              init();
+              count = 0;
+            }
+          })
+
+        }
+
+        function surprise(){
+          $("div").addClass("surprised");
+        }
+
+      })(jQuery)
+    </script>
+  </body>
+</html>

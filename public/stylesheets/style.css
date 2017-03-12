@@ -1,0 +1,25 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #12151D;
+}
+
+a {
+  color: #00B7FF;
+}
+
+div{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url(http://www.kuzunohonkai.com/assets/img/top/main.jpg);
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+div.surprised{
+  background-size: cover;
+  background-image: url(http://blog-001.west.edge.storage-yahoo.jp/res/blog-2c-78/sinku_suigintou777/folder/479278/65/3788465/img_3?1298083383)!important;
+}
